@@ -1,0 +1,17 @@
+@use 'styles/vars';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$s-double;
+
+    &__localisation {
+        display: flex;
+        align-items: center;
+
+        &__pin {
+            margin-right: vars.$s-default;
+        }
+    }
+}

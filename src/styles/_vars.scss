@@ -1,0 +1,18 @@
+
+// COLORS
+$c-dark: #272929;
+$c-gray-container: #3D3F3F;
+$c-gray-text: #7E7A7A;
+$c-gray-text-container: #BDBDBD;
+$c-white: #FFFFFF;
+$c-main: #FBC085;
+
+// SPACING
+$s-min: 1.2rem;
+$s-default: 1.8rem;
+$s-double: 3.6rem;
+
+// GRID SETTINGS
+$g-column: repeat(10, 1fr);
+$g-row: repeat(8, 1fr);
+$gap: $s-min;

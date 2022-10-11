@@ -1,0 +1,7 @@
+@use '../../styles/vars';
+
+.main-card {
+    background-color: cornflowerblue;
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 4;
+}

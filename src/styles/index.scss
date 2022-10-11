@@ -1,0 +1,23 @@
+@use 'reset';
+@use 'vars';
+@use 'fonts';
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body, html {
+    background-color: vars.$c-dark;
+    font-family: 'Roboto', sans-serif;
+    font-size: 10px;
+    color: vars.$c-white;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 2.5rem 4.4rem;
+}
