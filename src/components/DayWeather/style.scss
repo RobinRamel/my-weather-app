@@ -1,5 +1,46 @@
+@use '../../styles/vars';
+
 .day-weather {
-    background-color: burlywood;
+    background-color: vars.$c-gray-container;
+    border-radius: 10px;
     grid-column: auto / span 3;
     grid-row: auto / span 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+
+    &__left {
+        // transform: scale(1.5);
+        width: fit-content;
+
+        svg {
+            transform: scale(1.5);  
+            transform-origin: center left;
+        }
+    }
+
+    &__right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        
+        .card-title {
+            margin-bottom: 1rem;
+
+            span {
+                font-size: 1.8rem;
+                font-weight: 300;
+                color: vars.$c-gray-text-container;
+            }
+        }
+
+        .card-value {
+            span {
+                font-size: 2.6rem;
+                font-weight: 500;
+            }
+        }
+    }
+
 }

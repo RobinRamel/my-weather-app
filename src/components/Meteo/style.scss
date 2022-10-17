@@ -6,7 +6,7 @@
     height: 100%;
     grid-template-columns: vars.$g-column;
     grid-template-rows: vars.$g-row;
-    gap: vars.$s-min;
+    gap: vars.$g-gap;
 }
 
 // .photos-grid {

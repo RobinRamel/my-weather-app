@@ -9,6 +9,8 @@ body, html {
     font-family: 'Roboto', sans-serif;
     font-size: 10px;
     color: vars.$c-white;
+    position: relative;
+    z-index: -1;
 }
 
 .app {
@@ -21,3 +23,83 @@ body, html {
     flex-direction: column;
     padding: 2.5rem 4.4rem;
 }
+
+
+//---------Glass effect------------// 
+.glass-effect {
+    background-clip: padding-box !important;
+    background:  linear-gradient(156.57deg, #4B4E4E, vars.$c-dark);
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0; left: 0; bottom: 0;
+        z-index: -1;
+        margin: -(vars.$s-glass); 
+        border-radius: inherit;
+        background: linear-gradient(
+            135deg, 
+            rgba(255, 255, 255, .6),
+            vars.$c-dark, 
+            rgba(255, 255, 255, .1));
+    }
+
+    &:after {
+        content: '';
+        background-image: url(../assets/images/glass.png);
+        position: absolute;
+        top: 0; right: 0; left: 0; bottom: 0;
+        object-fit: fill;
+        opacity: 5%;
+        border-radius: 12px;
+        margin: 1px;
+    }
+}
+
+//---------Glass effect END------------// 
+
+.arrow {
+    border: solid vars.$c-main;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 6px;
+
+    &--right {
+        transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+    }
+}
+
+
+// /* width */
+// ::-webkit-scrollbar {
+//     width: 10px;
+// }
+// /* button */
+// ::-webkit-scrollbar-button {
+//     background: #222; 
+// }
+// /* Handle */
+// ::-webkit-scrollbar-thumb {
+//     background: #333; 
+// }
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//     background: #666; 
+// }
+// /* Track */
+// ::-webkit-scrollbar-track {
+//     background: #000; 
+// }
+// /* The track NOT covered by the handle.
+// ::-webkit-scrollbar-track-piece {
+//     background: #000; 
+// }
+// /* Corner */
+// ::-webkit-scrollbar-corner {
+//     background: #999; 
+// }
+// /* Resizer */
+// ::-webkit-resizer {
+//     background: #111; 
+// }

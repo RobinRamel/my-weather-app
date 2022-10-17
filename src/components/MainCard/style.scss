@@ -1,7 +1,49 @@
 @use '../../styles/vars';
 
+
+
 .main-card {
-    background-color: cornflowerblue;
+    border: solid vars.$s-glass transparent;
+    // border-image-source: linear-gradient(135deg, rgba(255, 255, 255, .6), rgba(255, 255, 255, .1));
+    border-radius: 15px;
     grid-column: 1 / span 4;
     grid-row: 1 / span 4;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+
+    &__top {
+        display: flex;
+        justify-content: space-between;
+
+        &__infos {
+            text-align: right;
+
+            p.temperature {
+                font-size: 3rem;
+            }
+
+            p.weather {
+                font-size: 2.6rem;
+                font-weight: 300;
+            }
+        }
+    }
+
+    &__bot {
+        display: flex;
+        justify-content: space-between;
+        font-size: 2.2rem;
+
+        p.feeling {
+            font-weight: 300;
+        }
+
+        p.temperature-feeled {
+
+        }
+    }
+
 }
