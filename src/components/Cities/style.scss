@@ -5,7 +5,13 @@
     grid-row: 5 / span 4;
     display: flex;
     flex-direction: column;
-    overflow-y: hidden;
+    position: relative;
+    
+    &__container {
+        overflow-x: hidden;
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+    }
 
     // -------- COMPONENT CITY ------ // 
     .city {
@@ -14,7 +20,7 @@
         display: flex;
         width: 100%;
         border-radius: 10px;
-        padding: 20px;
+        padding: 8px 24px;
 
         &:not(:last-of-type) {
             margin-bottom: 1.8rem;
@@ -57,5 +63,5 @@
                 }
             }
         }
-    }
+    } 
 }
