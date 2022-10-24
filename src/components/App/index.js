@@ -1,5 +1,6 @@
 // import {ReactComponent as Soleil} from 'assets/weather-icons/Soleil.svg'
 import Header from 'components/Header';
+import Loading from 'components/Loading';
 import Map from 'components/Map';
 import Meteo from 'components/Meteo';
 import { useEffect } from 'react';
@@ -12,14 +13,15 @@ function App() {
   const loading = useSelector(state => state.weather.isLoading)
 
   useEffect(() => {
-    dispatch({
-      type: 'weather/getData'
-    })
+    dispatch({ type: 'localisation/getLocalisation' })
   }, [])
 
   if(loading) {
     return (
-      <p> is Loading... </p>
+      <div className="app">
+        <Header />
+        <Loading/>
+      </div>
     )
   }
 

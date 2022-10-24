@@ -8,7 +8,12 @@ const weatherInstance = axios.create({
 
 const ajax = (store) => (next) => (action) => {
     if(action.type === 'weather/getData') {
-        weatherInstance.get('weather?lat=45.7578137&lon=4.8320114&appid=8515322bfc58d345e1e14f44a6c2332e&units=metric&lang=fr')
+        console.log("middle ajax", store.getState())
+        const state = store.getState()
+        const long = state.localisation.coord.long
+        const lat = state.localisation.coord.lat
+        
+        weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=8515322bfc58d345e1e14f44a6c2332e&units=metric&lang=fr`)
         .then(response => {
             console.log("retour requete ok : ", response.data)
             store.dispatch(setData(response.data))
