@@ -31,6 +31,10 @@
 
     &__icon {
         transform: scale(.7);
+
+        &.scaled {
+            transform: scale(1.5);
+        }
     }
 
     &__value {

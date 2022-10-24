@@ -2,10 +2,27 @@
 import Header from 'components/Header';
 import Map from 'components/Map';
 import Meteo from 'components/Meteo';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './style.scss';
 
 function App() {
+  const dispatch = useDispatch()
+  const loading = useSelector(state => state.weather.isLoading)
+
+  useEffect(() => {
+    dispatch({
+      type: 'weather/getData'
+    })
+  }, [])
+
+  if(loading) {
+    return (
+      <p> is Loading... </p>
+    )
+  }
+
   return (
     <div className="app">
       <Header />

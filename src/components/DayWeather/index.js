@@ -1,4 +1,4 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import {ReactComponent as Wind} from 'assets/icons/vent.svg';
 
 import './style.scss';
@@ -7,18 +7,23 @@ import './style.scss';
  * Component to show infos such as wind speed, pressure, wind direction, humidity
  * 
  */
-function DayWeather() {
+function DayWeather({
+  icon,
+  caption,
+  value,
+  unit
+}) {
   return (
     <div className="day-weather">
       <div className="day-weather__left">
-        <Wind />
+        { icon }
       </div>
       <div className="day-weather__right">
         <div className="card-title">
-          <span> Vitesse du vent </span>
+          <span> {caption} </span>
         </div>
         <div className="card-value">
-          <span> 12 km/h </span>
+          <span> {Math.round(value)} {unit} </span>
         </div>
       </div>
     </div>
@@ -26,7 +31,10 @@ function DayWeather() {
 }
 
 DayWeather.propTypes = {
-
+  icon: PropTypes.element,
+  caption: PropTypes.string,
+  value: PropTypes.number,
+  unit: PropTypes.string
 };
 
 export default DayWeather;

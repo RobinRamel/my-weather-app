@@ -20,9 +20,11 @@
 
         &__infos {
             text-align: right;
+            max-width: 60%;
 
             p.temperature {
                 font-size: 3rem;
+                margin-bottom: vars.$s-default;
             }
 
             p.weather {

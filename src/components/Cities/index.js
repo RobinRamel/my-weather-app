@@ -9,7 +9,7 @@ function Cities() {
   return (
     <div className="cities">
       <div className="cities__container">
-      <SimpleBar style={{ height: '100%' }}>
+      <SimpleBar style={{ height: '100%', overflowX: 'hidden' }}>
         <City />
         <City />
         <City />
