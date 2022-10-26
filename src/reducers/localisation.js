@@ -19,12 +19,19 @@ const localisation = createSlice({
         },
         toggleUserDenied: (state) => {
             state.userDenied = !state.userDenied
+        },
+        setCityName: (state, action) => {
+            state.cityName = action.payload.cityName
         }
     }
 })
 
 const { actions, reducer } = localisation
 
-export const { setLocalisation, toggleUserDenied } = actions
+export const { 
+    setLocalisation, 
+    toggleUserDenied,
+    setCityName
+} = actions
 
 export default reducer;

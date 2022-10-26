@@ -4,8 +4,11 @@ import Searchbar from 'components/Searchbar';
 import {ReactComponent as Pin} from 'assets/icons/pin.svg'
 
 import './style.scss';
+import { useSelector } from 'react-redux';
 
 function Header() {
+  const cityName = useSelector(state => state.localisation.cityName)
+  
   return (
     <header className="header">
 
@@ -14,7 +17,10 @@ function Header() {
               <Pin />
             </div>
             <div className="header__localisation__text">
-                <p className="section"> Lyon, <span> France </span> </p>
+                <p className="section"> 
+                   { cityName.length > 1 ? cityName : 'Inconnu' }
+                  {/* <span> France </span>  */}
+                </p>
             </div>
         </div>
 

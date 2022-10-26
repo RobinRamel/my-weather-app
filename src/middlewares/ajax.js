@@ -1,5 +1,9 @@
 import axios from 'axios'
+import { setCityName } from 'reducers/localisation'
 import { setData } from 'reducers/weather'
+import { addCity } from 'reducers/cities'
+import { batch } from 'react-redux'
+
 
 const weatherInstance = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5'
@@ -8,7 +12,6 @@ const weatherInstance = axios.create({
 
 const ajax = (store) => (next) => (action) => {
     if(action.type === 'weather/getData') {
-        console.log("middle ajax", store.getState())
         const state = store.getState()
         const long = state.localisation.coord.long
         const lat = state.localisation.coord.lat
@@ -16,7 +19,17 @@ const ajax = (store) => (next) => (action) => {
         weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=8515322bfc58d345e1e14f44a6c2332e&units=metric&lang=fr`)
         .then(response => {
             console.log("retour requete ok : ", response.data)
-            store.dispatch(setData(response.data))
+            const data = response.data
+
+            batch(() => {
+                store.dispatch(setData(data))
+                store.dispatch(setCityName({ cityName: data.name}))
+                store.dispatch(addCity({
+                    lat: data.coord.lat,
+                    long: data.coord.lon,
+                    cityName: data.name
+                }))
+            })
         })
         .catch(error => {
             console.log('erreur : ', error)

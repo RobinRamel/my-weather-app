@@ -6,6 +6,7 @@ const localisation = store => next => action => {
     if (action.type === 'localisation/getLocalisation') {
         
         const success = (pos) => {
+            console.log(pos)
 
             const coord = {
                 long: pos.coords.longitude,
