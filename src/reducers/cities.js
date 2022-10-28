@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     list: [],
+    isSearching: false
 }
 
 const cities = createSlice({
@@ -18,13 +19,25 @@ const cities = createSlice({
         },
         setCities: (state, action) => {
            state.list = action.payload 
+        },
+        searchingOn: state => {
+            state.isSearching = true
+        },
+        searchingOff: state => {
+            state.isSearching = false
         }
     }
 })
 
 const { actions, reducer } = cities
 
-export const { addCity, setCities } = actions
+export const { 
+    addCity, 
+    setCities, 
+    searchingOn, 
+    searchingOff 
+
+} = actions
 
 export default reducer
 

@@ -12,6 +12,8 @@ function Cities() {
   const storeCityList = useSelector(state => state.cities.list)
   const actualCityName = useSelector(state => state.localisation.cityName)
   const filteredCityList = storeCityList.filter(city => city.cityName !== actualCityName)
+  
+  console.log("render Cities")
 
   useEffect(() => {
     const citiesLocalSto = localStorage.getItem('myweatherapp-city-list')
@@ -34,13 +36,12 @@ function Cities() {
 
       {/* SimpleBar is here to handle if there is too many items it will display a nice scrollbar */}
       <SimpleBar style={{ height: '100%', overflowX: 'hidden' }}>
-        {filteredCityList.length > 0
-          ? filteredCityList.map(city => <City key={city.cityName} {...city}/>)
-          : <p className="empty">Ajoutez des villes supplémentaires...</p>
+      
+        {
+          filteredCityList.length > 0
+            ? filteredCityList.map(city => <City key={city.cityName} {...city}/>)
+            : <p className="empty">Ajoutez des villes supplémentaires...</p>
         }
-
-        {/* for test */}
-        {/* { storeCityList.map(city => <City key={city.cityName} {...city}/>) } */}
 
       </SimpleBar>
       </div>

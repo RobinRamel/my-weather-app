@@ -5,16 +5,23 @@ import Map from 'components/Map';
 import Meteo from 'components/Meteo';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { searchingOff } from 'reducers/cities';
 
 import './style.scss';
 
 function App() {
   const dispatch = useDispatch()
   const loading = useSelector(state => state.weather.isLoading)
+  const isSearching = useSelector(state => state.cities.isSearching)
+  
 
   useEffect(() => {
     dispatch({ type: 'localisation/getLocalisation' })
   }, [])
+
+  const handleClickOut = () => {
+    dispatch(searchingOff())
+  }
 
   if(loading) {
     return (
@@ -27,6 +34,10 @@ function App() {
 
   return (
     <div className="app">
+      <div 
+        className={ isSearching ? "cover-for-searching on" : "cover-for-searching" }
+        onClick={handleClickOut}
+      ></div>
       <Header />
       <div className="dashboard">
         <div className="dashboard__meteo">

@@ -19,7 +19,6 @@ function Header() {
             <div className="header__localisation__text">
                 <p className="section"> 
                    { cityName.length > 1 ? cityName : 'Inconnu' }
-                  {/* <span> France </span>  */}
                 </p>
             </div>
         </div>

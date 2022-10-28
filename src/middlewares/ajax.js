@@ -9,9 +9,14 @@ const weatherInstance = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5'
 })
 
+const geocoding = axios.create({
+    baseURL: 'http://api.openweathermap.org/geo/1.0'
+})
+
 
 const ajax = (store) => (next) => (action) => {
-    if(action.type === 'weather/getData') {
+
+    if(action.type === 'ajax/getData') {
         const state = store.getState()
         const long = state.localisation.coord.long
         const lat = state.localisation.coord.lat

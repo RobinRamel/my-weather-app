@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
-// import PropTypes from 'prop-types';
+import { memo } from 'react';
+
 import MainCard from 'components/MainCard';
 import DayWeather from 'components/DayWeather';
 import DayInfo from 'components/DayInfo';
@@ -21,7 +22,7 @@ function Meteo() {
   const sunTime = useSelector(state => state.weather.data.sys)
   const temperatures = useSelector(state => state.weather.data.main)
   const windData = useSelector(state => state.weather.data.wind)
-
+  console.log("render meteo")
 
   return (
     // Grid Dashboard meteo
@@ -71,4 +72,4 @@ Meteo.propTypes = {
 
 };
 
-export default Meteo;
+export default memo(Meteo);

@@ -4,6 +4,7 @@ $padding: 3.4rem;
 
 .header__searchbar {
     position: relative;
+    z-index: 10;
 
     input {
         background-color: vars.$c-gray-container;
@@ -12,6 +13,10 @@ $padding: 3.4rem;
         padding: .8rem $padding;
         color: vars.$c-white;
         width: 100%;
+
+        &:hover {
+            cursor: pointer;
+        }
 
         &::placeholder {
             color: vars.$c-gray-text-container;

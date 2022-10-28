@@ -14,7 +14,7 @@ const localisation = store => next => action => {
             }
 
             store.dispatch(setLocalisation(coord))
-            store.dispatch({ type: 'weather/getData'})
+            store.dispatch({ type: 'ajax/getData'})
         }
 
         const error = (err) => {

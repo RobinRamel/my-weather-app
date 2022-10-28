@@ -1,0 +1,44 @@
+@use '../../styles/vars';
+
+.cities_found {
+    position: absolute;
+    overflow: hidden;
+    right: 0;
+    top: 100%;
+    width: 40vw;
+    border-radius: 5px;
+    margin-top: vars.$s-default;
+    background-color: vars.$c-gray-container;
+    animation: show .6s ease-in-out forwards;
+
+    // COMPONENT CITYFOUND
+    &__city {
+        display: flex;
+        height: 7vh;
+        justify-content: space-between;
+        padding: 18px 24px;
+        background: linear-gradient(180deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
+
+        &__name {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: .1rem;
+            display: flex;
+
+            .state {
+                font-weight: 300;
+                color: vars.$c-gray-text-container;
+            }
+        }
+    }
+}
+
+@keyframes show {
+    0% {
+        max-height: 0;
+    }
+
+    100% {
+        max-height: 70vh;
+    }
+}

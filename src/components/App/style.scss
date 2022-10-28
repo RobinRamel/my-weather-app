@@ -11,6 +11,27 @@
     flex-direction: column;
     padding: 2.5rem 4.4rem;
 
+    .cover-for-searching {
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 1s, z-index 1.5s;
+        
+        &:hover { 
+            cursor: pointer;
+        }
+
+        &.on {
+            z-index: 5;
+            opacity: .5;
+            transition: opacity 1s;
+        }
+    }
+
     .dashboard {
         display: flex;
         height: 100%;
