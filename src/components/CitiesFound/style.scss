@@ -14,7 +14,7 @@
     // COMPONENT CITYFOUND
     &__city {
         display: flex;
-        height: 7vh;
+        height: 8vh;
         justify-content: space-between;
         padding: 18px 24px;
         background: linear-gradient(180deg, rgba(0, 0, 0, .1), rgba(0, 0, 0, 0));
@@ -30,6 +30,29 @@
                 color: vars.$c-gray-text-container;
             }
         }
+
+        &__btns {
+            display: flex;
+
+            .btn {
+                svg {
+                    width: 1.4rem;
+                    height: 1.4rem;
+
+                    path {
+                        fill: white;
+                    }
+                }
+            }
+
+            .add_city {
+                margin-left: 18px;
+            }
+
+            .change_localisation {
+
+            }
+        }
     }
 }
 
@@ -39,6 +62,6 @@
     }
 
     100% {
-        max-height: 70vh;
+        max-height: 80vh;
     }
 }

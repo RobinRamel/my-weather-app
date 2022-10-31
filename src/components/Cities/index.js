@@ -1,6 +1,7 @@
 import City from './city';
 import SimpleBar from 'simplebar-react';
 import 'simplebar-react/dist/simplebar.min.css';
+import { nanoid } from '@reduxjs/toolkit'; 
 
 import './style.scss';
 import { useEffect } from 'react';
@@ -11,9 +12,10 @@ function Cities() {
   const dispatch = useDispatch()
   const storeCityList = useSelector(state => state.cities.list)
   const actualCityName = useSelector(state => state.localisation.cityName)
+  // as we add initial city, we need to exclude it from the render
   const filteredCityList = storeCityList.filter(city => city.cityName !== actualCityName)
   
-  console.log("render Cities")
+  console.log("render Cities", filteredCityList)
 
   useEffect(() => {
     const citiesLocalSto = localStorage.getItem('myweatherapp-city-list')
@@ -36,10 +38,11 @@ function Cities() {
 
       {/* SimpleBar is here to handle if there is too many items it will display a nice scrollbar */}
       <SimpleBar style={{ height: '100%', overflowX: 'hidden' }}>
-      
+
+        {/* we excluded the inital city so if the array lenght is less than 0 we dont render it */}
         {
           filteredCityList.length > 0
-            ? filteredCityList.map(city => <City key={city.cityName} {...city}/>)
+            ? filteredCityList.map(city => <City key={nanoid()} {...city}/>)
             : <p className="empty">Ajoutez des villes supplémentaires...</p>
         }
 

@@ -46,9 +46,10 @@ function App() {
             <span className="dashboard__meteo__nav__link active">
               Aujourd'hui
             </span>
-            <span className="dashboard__meteo__nav__link">
+            {/* For a next feature */}
+            {/* <span className="dashboard__meteo__nav__link">
               prévision 5 jours 
-            </span>
+            </span> */}
           </nav>
 
           {/* Dashboard content */}

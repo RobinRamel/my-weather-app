@@ -17,23 +17,31 @@ const geocoding = axios.create({
 const ajax = (store) => (next) => (action) => {
 
     if(action.type === 'ajax/getData') {
+        console.log("ajax")
         const state = store.getState()
         const long = state.localisation.coord.long
         const lat = state.localisation.coord.lat
+        const cityList = state.cities.list
         
         weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=8515322bfc58d345e1e14f44a6c2332e&units=metric&lang=fr`)
         .then(response => {
             console.log("retour requete ok : ", response.data)
             const data = response.data
+            const isCityAlreadyInList = cityList.find(element => element.cityName === data.name)
 
             batch(() => {
                 store.dispatch(setData(data))
                 store.dispatch(setCityName({ cityName: data.name}))
-                store.dispatch(addCity({
-                    lat: data.coord.lat,
-                    long: data.coord.lon,
-                    cityName: data.name
-                }))
+
+                // If the city already exist in our list of cities we don't add it
+                if(!isCityAlreadyInList) {
+
+                    store.dispatch(addCity({
+                        lat: data.coord.lat,
+                        long: data.coord.lon,
+                        cityName: data.name
+                    }))
+                }
             })
         })
         .catch(error => {
