@@ -4,8 +4,8 @@ import Loading from 'components/Loading';
 import Map from 'components/Map';
 import Meteo from 'components/Meteo';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { searchingOff } from 'reducers/cities';
+import { batch, useDispatch, useSelector } from 'react-redux';
+import { searchingOff, setCities } from 'reducers/cities';
 
 import './style.scss';
 
@@ -16,7 +16,18 @@ function App() {
   
 
   useEffect(() => {
-    dispatch({ type: 'localisation/getLocalisation' })
+    const citiesLocalSto = JSON.parse( window.localStorage.getItem('myweatherapp-city-list') )
+    console.log("app initial render : ", citiesLocalSto)
+
+    batch(() => {
+      if (citiesLocalSto) {
+        console.log("dispatch set cities")
+        dispatch(setCities(citiesLocalSto))
+      }
+      
+      dispatch({ type: 'localisation/getLocalisation' })
+    })
+
   }, [])
 
   const handleClickOut = () => {

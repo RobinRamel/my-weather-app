@@ -7,17 +7,15 @@ import './style.scss';
 import { batch, useDispatch } from 'react-redux';
 import { addCity, searchingOff } from 'reducers/cities';
 import { setCityName, setLocalisation } from 'reducers/localisation';
+import { addCityToLocalStorage } from 'selectors/localStorage'
 
 function CityFound({ cityName, lat, long, cityState }) {
     const dispatch = useDispatch()
     
     const handleAddCity = () => {
         console.log("city add in cityfound")
-        dispatch(addCity({
-            lat,
-            long,
-            cityName
-        }))
+        addCityToLocalStorage({ lat, long, cityName })
+        dispatch(addCity({ lat, long, cityName }))
     }
 
     const handleChangeLocalisation = () => {

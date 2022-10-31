@@ -3,6 +3,7 @@ import { setCityName } from 'reducers/localisation'
 import { setData } from 'reducers/weather'
 import { addCity } from 'reducers/cities'
 import { batch } from 'react-redux'
+import { addCityToLocalStorage } from 'selectors/localStorage'
 
 
 const weatherInstance = axios.create({
@@ -28,6 +29,11 @@ const ajax = (store) => (next) => (action) => {
             console.log("retour requete ok : ", response.data)
             const data = response.data
             const isCityAlreadyInList = cityList.find(element => element.cityName === data.name)
+            const dataToStore = {
+                lat: data.coord.lat,
+                long: data.coord.lon,
+                cityName: data.name
+            }
 
             batch(() => {
                 store.dispatch(setData(data))
@@ -35,12 +41,8 @@ const ajax = (store) => (next) => (action) => {
 
                 // If the city already exist in our list of cities we don't add it
                 if(!isCityAlreadyInList) {
-
-                    store.dispatch(addCity({
-                        lat: data.coord.lat,
-                        long: data.coord.lon,
-                        cityName: data.name
-                    }))
+                    addCityToLocalStorage(dataToStore)
+                    store.dispatch(addCity(dataToStore))
                 }
             })
         })

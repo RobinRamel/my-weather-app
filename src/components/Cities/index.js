@@ -4,29 +4,15 @@ import 'simplebar-react/dist/simplebar.min.css';
 import { nanoid } from '@reduxjs/toolkit'; 
 
 import './style.scss';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCities } from 'reducers/cities';
+import { useSelector } from 'react-redux';
 
 function Cities() {
-  const dispatch = useDispatch()
   const storeCityList = useSelector(state => state.cities.list)
   const actualCityName = useSelector(state => state.localisation.cityName)
   // as we add initial city, we need to exclude it from the render
   const filteredCityList = storeCityList.filter(city => city.cityName !== actualCityName)
   
   console.log("render Cities", filteredCityList)
-
-  useEffect(() => {
-    const citiesLocalSto = localStorage.getItem('myweatherapp-city-list')
-    console.log("local storage retrive", citiesLocalSto)
-
-    if (citiesLocalSto) {
-      dispatch(setCities(citiesLocalSto))
-    }
-    
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
 
   return (
