@@ -1,10 +1,17 @@
 @use 'styles/vars';
+@use 'styles/mixins' as *;
 
 $padding: 3.4rem;
 
 .header__searchbar {
     position: relative;
     z-index: 10;
+
+    @include breakpoint(sm) {
+        order: 3;      
+        width: 100%;            
+    }
+
 
     input {
         background-color: vars.$c-gray-container;

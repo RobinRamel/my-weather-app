@@ -26,7 +26,7 @@ function MainCard() {
         </div>
       </div>
       <div className="main-card__bot">
-        <p className="feeling"> ressentis : </p>
+        <p className="feeling"> Ressenti : </p>
         <p className="temperature-feeled"> {Math.round(temperatures.feels_like)} ° C </p>
       </div>
     </div>

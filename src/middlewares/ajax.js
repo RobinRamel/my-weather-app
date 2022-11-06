@@ -10,23 +10,17 @@ const weatherInstance = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5'
 })
 
-const geocoding = axios.create({
-    baseURL: 'http://api.openweathermap.org/geo/1.0'
-})
-
 
 const ajax = (store) => (next) => (action) => {
 
     if(action.type === 'ajax/getData') {
-        console.log("ajax")
         const state = store.getState()
         const long = state.localisation.coord.long
         const lat = state.localisation.coord.lat
         const cityList = state.cities.list
         
-        weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=8515322bfc58d345e1e14f44a6c2332e&units=metric&lang=fr`)
+        weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_APIKEY}&units=metric&lang=fr`)
         .then(response => {
-            console.log("retour requete ok : ", response.data)
             const data = response.data
             const isCityAlreadyInList = cityList.find(element => element.cityName === data.name)
             const dataToStore = {

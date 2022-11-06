@@ -3,10 +3,10 @@ import { setLocalisation, toggleUserDenied } from 'reducers/localisation'
 
 const localisation = store => next => action => {
 
+    // Working with the navigator's geolocation
     if (action.type === 'localisation/getLocalisation') {
         
         const success = (pos) => {
-            console.log(pos)
 
             const coord = {
                 long: pos.coords.longitude,

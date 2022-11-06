@@ -1,4 +1,5 @@
-@use '../../styles/vars';
+@use 'styles/vars';
+@use 'styles/mixins' as *; 
 
 .cities_found {
     position: absolute;
@@ -10,6 +11,12 @@
     margin-top: vars.$s-default;
     background-color: vars.$c-gray-container;
     animation: show .6s ease-in-out forwards;
+
+    @include breakpoint(sm) {
+        width: 100%;                  
+    }
+
+    
 
     // COMPONENT CITYFOUND
     &__city {

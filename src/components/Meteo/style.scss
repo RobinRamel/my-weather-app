@@ -1,4 +1,5 @@
 @use '../../styles/vars';
+@use '../../styles/mixins' as *;
 
 .meteo {
     display: grid;
@@ -7,6 +8,12 @@
     grid-template-columns: vars.$g-column;
     grid-template-rows: vars.$g-row;
     gap: vars.$g-gap;
+    max-height: 80vh;
+
+    @include breakpoint(sm) {
+        grid-template-rows: repeat(13, 9vh);    
+        max-height: none;           
+    }
 }
 
 // .photos-grid {

@@ -25,7 +25,7 @@ function Map() {
         {/* Layer to add on map for later Updates if needed  */}
         {/* <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=8515322bfc58d345e1e14f44a6c2332e`}
+          url={`https://tile.openweathermap.org/map/wind_new/{z}/{x}/{y}.png?appid=${process.env.REACT_APP_APIKEY}`}
           zIndex={2}
         /> */}
 

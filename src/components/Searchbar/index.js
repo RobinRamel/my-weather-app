@@ -30,7 +30,7 @@ function Searchbar() {
   const handleSubmit = (e) => {
     e.preventDefault()
     
-    geocoding.get(`direct?q=${inputValue}&limit=10&appid=8515322bfc58d345e1e14f44a6c2332e`)
+    geocoding.get(`direct?q=${inputValue}&limit=10&appid=${process.env.REACT_APP_APIKEY}`)
       .then(response => {
           console.log(response.data)
           setFoundCities(response.data)

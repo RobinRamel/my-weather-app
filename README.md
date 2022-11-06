@@ -1,70 +1,44 @@
-# Getting Started with Create React App
+# Projet My Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue,
+my weather app est un projet pour mon Portfolio personel, après avoir finis ma formation React, il me fallait un projet pour pratiquer et pouvoir montrer mon niveau actuel en React et son environnement.
 
-## Available Scripts
+Il fut un exercice pour mon affinité aavec le design, puisque je l'ai réalisé par moi même, il n'est donc pas parfait car je suis dev avant tout mais m'a permis de faire de la veille dessus et pratiquer.
+[Lien du figma]()
 
-In the project directory, you can run:
+C'est un application de Météo, connecté a plusieurs API de [OpenWeatherMap](https://openweathermap.org/)
+ainsi qu'à [Leaflet](https://leafletjs.com/) pour la partie display de la map
+Ici j'ai choisis d'utiliser CreateReactApp pour kickStart mon projet et passer moins de temps en config webpack
+J'ai aussi fait le choix de me former sur ce projet avec Redux-toolkit que l'on avait seulement survolé en formation.
+le côté api sera géré avec Axios.
 
-### `npm start`
+# Setup du projet
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installation des dépendances
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+    npm install
+```
 
-### `npm test`
+## Api Ready
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Veuillez vous rendre sur [La page de connexion Openweather](https://home.openweathermap.org/users/sign_in)
+Il faut créer son compte et récupérer une clef API gratuite.
+ensuite il faudra créer un fichier `.env`
+et le remplir comme ceci.
 
-### `npm run build`
+```Javascript
+    REACT_APP_APIKEY = {* APi key ici *}
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Start le projet avec CreateReactApp
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+    npm start
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Plus qu'à ouvrir  [http://localhost:3000](http://localhost:3000) 
 
-### `npm run eject`
+# Features a venir
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- ajout d'une seconde view avec la vue sur 5 jours de la meteo

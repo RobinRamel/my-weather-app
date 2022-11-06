@@ -1,4 +1,5 @@
 @use '../../styles/vars';
+@use '../../styles/mixins' as *;
 
 .day-weather {
     background-color: vars.$c-gray-container;
@@ -10,13 +11,32 @@
     align-items: center;
     padding: 15px 30px;
 
+    @include breakpoint(sm) {
+        grid-column: auto / span 5;
+        grid-row: auto / span 2;
+    }
+
+    @include breakpoint(lt-sm) {
+        flex-direction: column;
+        justify-content: center;            
+    }
+
     &__left {
         // transform: scale(1.5);
         width: fit-content;
+        padding-right: vars.$s-default;
+
+        @include breakpoint(lt-sm) {
+            padding-right: 0;
+        }
 
         svg {
             transform: scale(1.5);  
             transform-origin: center left;
+
+            @include breakpoint(lt-lg) {
+                transform: scale(1);
+            }
         }
     }
 
@@ -24,12 +44,22 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        @include breakpoint(lt-sm) {
+            align-items: center;
+            text-align: center;
+            margin-top: vars.$s-default;            
+        }
         
         .card-title {
             margin-bottom: 1rem;
 
+            @include breakpoint(lt-sm) {
+                margin-bottom: .5rem;            
+            }
+
             span {
-                font-size: 1.8rem;
+                font-size: 2rem;
                 font-weight: 300;
                 color: vars.$c-gray-text-container;
             }
@@ -39,6 +69,10 @@
             span {
                 font-size: 2.6rem;
                 font-weight: 500;
+
+                @include breakpoint(lt-lg) {
+                    font-size: 2.3rem;   
+                }
             }
         }
     }

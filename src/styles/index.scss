@@ -1,6 +1,7 @@
 @use 'reset';
 @use 'vars';
 @use 'fonts';
+@use 'mixins' as *;
 
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
@@ -11,6 +12,22 @@ body, html {
     color: vars.$c-white;
     position: relative;
     z-index: -1;
+
+    @include breakpoint(gt-ultrawide) {
+        font-size: 14px;
+    }
+
+    @include breakpoint(gt-xxl) {
+        font-size: 12px;
+    }
+
+    @include breakpoint(lt-xl) {
+        font-size: 9px;
+    }
+
+    @include breakpoint(lt-lg) {
+        font-size: 8px;
+    }
 }
 
 
