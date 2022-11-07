@@ -1,7 +1,6 @@
 // import PropTypes from 'prop-types';
 
 import './style.scss';
-import {ReactComponent as Icon} from 'assets/weather-icons/Nuageux.svg'
 import { useSelector } from 'react-redux';
 import { renderSvgIconDependingWeather } from 'selectors/weather'
 

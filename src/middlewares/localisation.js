@@ -1,4 +1,3 @@
-import { useDispatch } from 'react-redux'
 import { setLocalisation, toggleUserDenied } from 'reducers/localisation'
 
 const localisation = store => next => action => {

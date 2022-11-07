@@ -14,7 +14,6 @@ import './style.scss';
  */
 function City({ cityName, long, lat }) {
   const dispatch = useDispatch()
-  console.log("city")
 
   const handleSwitchLocalisation = () => {
 

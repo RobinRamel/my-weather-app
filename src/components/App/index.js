@@ -30,6 +30,7 @@ function App() {
       dispatch({ type: 'localisation/getLocalisation' })
     })
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleClickOut = () => {
