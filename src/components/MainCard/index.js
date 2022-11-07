@@ -7,7 +7,7 @@ import { renderSvgIconDependingWeather } from 'selectors/weather'
 
 /**
  * Component to display Day data 
- * such as weather, temperature
+ * such as weather, temperature, feels like and svg icon 
  */
 function MainCard() {
   const weather = useSelector(state => state.weather.data.weather[0])

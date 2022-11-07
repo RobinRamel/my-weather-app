@@ -1,4 +1,8 @@
-
+/**
+ * Handle the localStorage to store the city if it doesn't already exist 
+ * if the localStorage isn't set, we do it with the city we wan't to add
+ * @param {lat, long, cityName} 
+ */
 export const addCityToLocalStorage = ({lat, long, cityName}) => {
     const retrieveLocalStorage = JSON.parse( window.localStorage.getItem('myweatherapp-city-list') )
 

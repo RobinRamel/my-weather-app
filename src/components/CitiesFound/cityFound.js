@@ -9,17 +9,22 @@ import { addCity, searchingOff } from 'reducers/cities';
 import { setCityName, setLocalisation } from 'reducers/localisation';
 import { addCityToLocalStorage } from 'selectors/localStorage'
 
+/**
+ * Describe a city found in Api request plus 2 actions 
+ * we can change the actualLocalisation and also add to the cityList 
+ * which trigger the store to LocalStorage also 
+ * @param {props} 
+ * @returns component cityFound
+ */
 function CityFound({ cityName, lat, long, cityState }) {
     const dispatch = useDispatch()
     
     const handleAddCity = () => {
-        console.log("city add in cityfound")
         addCityToLocalStorage({ lat, long, cityName })
         dispatch(addCity({ lat, long, cityName }))
     }
 
     const handleChangeLocalisation = () => {
-        console.log("change loc", cityName, lat, long)
 
         batch(() => {
             dispatch(searchingOff())

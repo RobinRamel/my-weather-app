@@ -17,12 +17,14 @@ import { ReactComponent as Humidity } from 'assets/icons/humidite.svg'
 
 
 import './style.scss';
-
+/**
+ * Display a grid with all components, consider this the Dasboard with all data
+ * @returns Meteo component
+ */
 function Meteo() {
   const sunTime = useSelector(state => state.weather.data.sys)
   const temperatures = useSelector(state => state.weather.data.main)
   const windData = useSelector(state => state.weather.data.wind)
-  console.log("render meteo")
 
   return (
     // Grid Dashboard meteo

@@ -12,7 +12,11 @@ const geocoding = axios.create({
     baseURL: 'http://api.openweathermap.org/geo/1.0'
 })
 
-
+/**
+ * Handle form and input to trigger Api request to geolocation API 
+ * which return a list of potential cities corresponding to the input value 
+ * @returns searchbar component
+ */
 function Searchbar() {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState("")
@@ -32,7 +36,6 @@ function Searchbar() {
     
     geocoding.get(`direct?q=${inputValue}&limit=10&appid=${process.env.REACT_APP_APIKEY}`)
       .then(response => {
-          console.log(response.data)
           setFoundCities(response.data)
       })
       .catch(error => console.log("erreur geocoding : ", error))

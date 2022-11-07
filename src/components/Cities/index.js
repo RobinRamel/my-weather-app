@@ -6,14 +6,15 @@ import { nanoid } from '@reduxjs/toolkit';
 import './style.scss';
 import { useSelector } from 'react-redux';
 
+/**
+ * Display a list of city depending the cities in our Store
+ * @returns Component Cities
+ */
 function Cities() {
   const storeCityList = useSelector(state => state.cities.list)
   const actualCityName = useSelector(state => state.localisation.cityName)
   // as we add initial city, we need to exclude it from the render
   const filteredCityList = storeCityList.filter(city => city.cityName !== actualCityName)
-  
-  console.log("render Cities", filteredCityList)
-
 
   return (
     <div className="cities">

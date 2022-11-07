@@ -6,6 +6,7 @@ const localisation = store => next => action => {
     // Working with the navigator's geolocation
     if (action.type === 'localisation/getLocalisation') {
         
+        // Callback in case of success (if the user accept the geolocation)
         const success = (pos) => {
 
             const coord = {
@@ -17,6 +18,7 @@ const localisation = store => next => action => {
             store.dispatch({ type: 'ajax/getData'})
         }
 
+        // Callback in case of user deny the access to geolocation
         const error = (err) => {
             console.warn(`ERREUR (${err.code}): ${err.message}`);
             store.dispatch(toggleUserDenied())

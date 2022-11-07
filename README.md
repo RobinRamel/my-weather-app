@@ -12,6 +12,10 @@ Ici j'ai choisis d'utiliser CreateReactApp pour kickStart mon projet et passer m
 J'ai aussi fait le choix de me former sur ce projet avec Redux-toolkit que l'on avait seulement survolé en formation.
 le côté api sera géré avec Axios.
 
+### Attention ce projet est en V1
+Si vous regardez ce projet, ayez a l'esprit qu'il est encore en cours d'evolutions et que donc il manquera par exemple une batterie de tests unitaires plus exhaustive qu'actuellement.
+Merci de votre compréhension
+
 # Setup du projet
 
 ## Installation des dépendances
@@ -37,8 +41,19 @@ et le remplir comme ceci.
     npm start
 ```
 
-Plus qu'à ouvrir  [http://localhost:3000](http://localhost:3000) 
+Plus qu'à ouvrir  [http://localhost:3000](http://localhost:3000)
+
+## Run tests
+
+```bash
+    npm test
+```
 
 # Features a venir
 
-- ajout d'une seconde view avec la vue sur 5 jours de la meteo
+- mise en place des test unitaires pour certains components !important 
+- ajout d'une seconde view avec la vue sur 5 jours de la meteo + React router
+- ajout d'un layer sur la map pour vents / nuages / pluies et donner le choix du layer
+- ajouts de quelques animations
+- un petit state de loading sur les cartes
+- Gestion de differents etat de l'input de la barre de recherche ( erreur / rien trouve )

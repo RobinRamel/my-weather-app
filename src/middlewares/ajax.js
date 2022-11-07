@@ -10,7 +10,11 @@ const weatherInstance = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5'
 })
 
-
+/**
+ *  Handling axios and requesting the good endpoints depending of the localisation in the Store
+ * @param {*} store 
+ * @returns 
+ */
 const ajax = (store) => (next) => (action) => {
 
     if(action.type === 'ajax/getData') {
@@ -22,6 +26,7 @@ const ajax = (store) => (next) => (action) => {
         weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_APIKEY}&units=metric&lang=fr`)
         .then(response => {
             const data = response.data
+            // filter cities by name and could be empty or fullfilled
             const isCityAlreadyInList = cityList.find(element => element.cityName === data.name)
             const dataToStore = {
                 lat: data.coord.lat,
@@ -33,7 +38,7 @@ const ajax = (store) => (next) => (action) => {
                 store.dispatch(setData(data))
                 store.dispatch(setCityName({ cityName: data.name}))
 
-                // If the city already exist in our list of cities we don't add it
+                // If the city don't exist in our list of cities we add it
                 if(!isCityAlreadyInList) {
                     addCityToLocalStorage(dataToStore)
                     store.dispatch(addCity(dataToStore))

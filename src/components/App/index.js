@@ -9,6 +9,10 @@ import { searchingOff, setCities } from 'reducers/cities';
 
 import './style.scss';
 
+/**
+ * Main Component App which is the first Component 
+ * @returns component APP
+ */
 function App() {
   const dispatch = useDispatch()
   const loading = useSelector(state => state.weather.isLoading)
@@ -17,11 +21,9 @@ function App() {
 
   useEffect(() => {
     const citiesLocalSto = JSON.parse( window.localStorage.getItem('myweatherapp-city-list') )
-    console.log("app initial render : ", citiesLocalSto)
 
     batch(() => {
       if (citiesLocalSto) {
-        console.log("dispatch set cities")
         dispatch(setCities(citiesLocalSto))
       }
       

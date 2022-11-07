@@ -4,6 +4,11 @@ import { nanoid } from '@reduxjs/toolkit';
 
 import './style.scss';
 
+/**
+ * Render a list of City depending what's found with API request which we pass to props
+ * @param {props}  
+ * @returns component citiesFound
+ */
 function CitiesFound({ cityList }) {
   return (
     <div className="cities_found">

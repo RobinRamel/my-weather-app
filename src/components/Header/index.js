@@ -6,6 +6,7 @@ import {ReactComponent as Pin} from 'assets/icons/pin.svg'
 import './style.scss';
 import { useSelector } from 'react-redux';
 
+
 function Header() {
   const cityName = useSelector(state => state.localisation.cityName)
   

@@ -6,6 +6,12 @@ import { setCityName, setLocalisation } from 'reducers/localisation';
 
 import './style.scss';
 
+/**
+ * Component to describe a city found in our Store with a cityName and an action to change 
+ * the actual city in State, we also keep long/lat to handle the switch location
+ * @param {props}  
+ * @returns component city
+ */
 function City({ cityName, long, lat }) {
   const dispatch = useDispatch()
   console.log("city")

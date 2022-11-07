@@ -13,7 +13,10 @@ function ChangeView({ center }) {
   return null;
 }
 
-// Main MAP Component 
+/**
+ * Component which use react-leaflet to display a free Map base on leaflet 
+ * @returns Map component 
+ */
 function Map() {
   const position = useSelector(state => state.localisation.coord)
 
