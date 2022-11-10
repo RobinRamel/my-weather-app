@@ -9,26 +9,28 @@ import './style.scss';
  * @param {props}  
  * @returns component citiesFound
  */
-function CitiesFound({ cityList }) {
+function CitiesFound({ cityList, noResultFound }) {
   return (
     <div className="cities_found">
-        { 
-            cityList.map((city, index) => (
-                <CityFound 
-                    key={nanoid()}
-                    cityName={city.name}
-                    cityState={city.state}
-                    lat={city.lat}
-                    long={city.lon}
-                />  
-            ))
+        {noResultFound
+            ?   <span className="noResult">Aucun résultat trouvé, veuillez faire une nouvelle recherche...</span>
+            :   cityList.map(city => (
+                    <CityFound 
+                        key={nanoid()}
+                        cityName={city.name}
+                        cityState={city.state}
+                        lat={city.lat}
+                        long={city.lon}
+                    />  
+                ))
         }
     </div>
   );
 }
 
 CitiesFound.propTypes = {
-    cityList: PropTypes.array.isRequired
+    cityList: PropTypes.array.isRequired,
+    noResultFound: PropTypes.bool.isRequired
 };
 
 export default CitiesFound;

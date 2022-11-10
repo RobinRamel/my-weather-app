@@ -19,9 +19,8 @@ export const timestampToHoursMinutes = (timestamp) => {
     const date = new Date(timestamp * 1000)
     const hoursMinutesSecond = date.toLocaleString().split(' ')[1]
     const hoursMinutesArray = hoursMinutesSecond.split(':')
-    const hours = Number(hoursMinutesArray[0]) < 10 ? `0${hoursMinutesArray[0]}` : hoursMinutesArray[0]
     
-    return `${hours}:${hoursMinutesArray[1]}`
+    return `${hoursMinutesArray[0]}:${hoursMinutesArray[1]}`
 }
 
 /**

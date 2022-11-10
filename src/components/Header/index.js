@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux';
 
 
 function Header() {
-  const cityName = useSelector(state => state.localisation.cityName)
+  const stateLocalisation = useSelector(state => state.localisation)
   
   return (
     <header className="header">
@@ -19,7 +19,7 @@ function Header() {
             </div>
             <div className="header__localisation__text">
                 <p className="section"> 
-                   { cityName.length > 1 ? cityName : 'Inconnu' }
+                   { stateLocalisation.cityName.length > 1 ? <span className='main'>{stateLocalisation.cityName}, <span>{stateLocalisation.cityState}</span></span> : 'Inconnu' }
                 </p>
             </div>
         </div>

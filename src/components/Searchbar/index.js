@@ -9,7 +9,7 @@ import './style.scss'
 import CitiesFound from 'components/CitiesFound'
 
 const geocoding = axios.create({
-    baseURL: 'http://api.openweathermap.org/geo/1.0'
+    baseURL: 'https://api.openweathermap.org/geo/1.0'
 })
 
 /**
@@ -21,6 +21,7 @@ function Searchbar() {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState("")
   const [foundCities, setFoundCities] = useState([])
+  const [noResultFound, setNoResultFound] = useState(false)
   const isSearching = useSelector(state => state.cities.isSearching)
 
   const handleFocus = () => {
@@ -28,15 +29,21 @@ function Searchbar() {
   }
 
   const handleChange = (ev) => {
+    if(noResultFound) { setNoResultFound(false) }
     setInputValue(ev.target.value)
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    setNoResultFound(false)
     
     geocoding.get(`direct?q=${inputValue}&limit=10&appid=${process.env.REACT_APP_APIKEY}`)
       .then(response => {
-          setFoundCities(response.data)
+        console.log('cities found list : ', response.data)
+        const data = response.data
+        // length 0 on this array we get from API means he founds nothing
+        data.length === 0 ? setNoResultFound(true) : setFoundCities(response.data)
+        
       })
       .catch(error => console.log("erreur geocoding : ", error))
   }
@@ -46,6 +53,7 @@ function Searchbar() {
     <div className="header__searchbar">
         <form onSubmit={handleSubmit}>
           <input 
+            className={ noResultFound ? 'onError': '' }
             onFocus={handleFocus} 
             onChange={handleChange}
             type="text" 
@@ -54,7 +62,7 @@ function Searchbar() {
           <Loupe className="loupe"/>
         </form>
         {
-          foundCities.length > 0 && isSearching && <CitiesFound cityList={foundCities} />
+          isSearching && <CitiesFound cityList={foundCities} noResultFound={noResultFound} />
         }
     </div>
   );

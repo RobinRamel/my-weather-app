@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 // import {ReactComponent as Orage} from 'assets/weather-icons/Orage.svg'
-import { batch, useDispatch } from 'react-redux';
-import { setCityName, setLocalisation } from 'reducers/localisation';
+import { useDispatch } from 'react-redux';
+import { setLocalisation } from 'reducers/localisation';
 
 
 import './style.scss';
@@ -12,16 +12,11 @@ import './style.scss';
  * @param {props}  
  * @returns component city
  */
-function City({ cityName, long, lat }) {
+function City({ cityName, long, lat, cityState }) {
   const dispatch = useDispatch()
 
   const handleSwitchLocalisation = () => {
-
-    batch(() => {
-      dispatch(setLocalisation({ long, lat }))
-      dispatch(setCityName({ cityName }))
-    })
-
+    dispatch(setLocalisation({ long, lat }))
     dispatch({ type: "ajax/getData"})
   }
 
@@ -29,12 +24,10 @@ function City({ cityName, long, lat }) {
     <div className="city glass-effect" onClick={handleSwitchLocalisation}>
         <div className="city__container">
             <div className="city__container__infos">
-                <span className="city-name">{cityName}</span>
-                {/* <span className="degrees">22° C</span> */}
+                <span className="city-name">{cityName}, <span>{cityState}</span></span>
             </div>
 
             <div className="city__container__icons">
-                {/* <Orage /> */}
                 <i className="arrow arrow--right"></i>
             </div>
         </div>
@@ -45,7 +38,8 @@ function City({ cityName, long, lat }) {
 City.propTypes = {
   cityName: PropTypes.string.isRequired,
   long: PropTypes.number.isRequired,
-  lat: PropTypes.number.isRequired
+  lat: PropTypes.number.isRequired,
+  cityState: PropTypes.string.isRequired
 };
 
 export default City;

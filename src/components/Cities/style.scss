@@ -68,10 +68,13 @@
                 justify-content: center;
                 font-size: 2rem;
 
-                // For later upgrade 
-                // .city-name {
-                //     margin-bottom: 1.4rem;
-                // }
+                .city-name {
+                    
+                    span {
+                        font-weight: 300;
+                        opacity: .6;
+                    }
+                }
 
                 .degrees {
                     font-weight: 300;

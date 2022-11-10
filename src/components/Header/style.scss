@@ -24,5 +24,15 @@
         &__pin {
             margin-right: vars.$s-default;
         }
+
+        &__text {
+            .main {
+                color: vars.$c-white;
+
+                span {
+                    font-weight: 300;
+                }
+            }
+        }
     }
 }

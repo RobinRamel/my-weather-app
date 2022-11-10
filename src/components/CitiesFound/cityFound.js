@@ -4,9 +4,9 @@ import { ReactComponent as Add } from 'assets/icons/add.svg'
 import { ReactComponent as Pin } from 'assets/icons/pin.svg'
 
 import './style.scss';
-import { batch, useDispatch } from 'react-redux';
+import { batch, useDispatch, useSelector } from 'react-redux';
 import { addCity, searchingOff } from 'reducers/cities';
-import { setCityName, setLocalisation } from 'reducers/localisation';
+import { setLocalisation } from 'reducers/localisation';
 import { addCityToLocalStorage } from 'selectors/localStorage'
 
 /**
@@ -18,18 +18,26 @@ import { addCityToLocalStorage } from 'selectors/localStorage'
  */
 function CityFound({ cityName, lat, long, cityState }) {
     const dispatch = useDispatch()
+    const stateLocalisation = useSelector(state => state.localisation)
     
     const handleAddCity = () => {
-        addCityToLocalStorage({ lat, long, cityName })
-        dispatch(addCity({ lat, long, cityName }))
+        console.log('handle add city ' , stateLocalisation)
+
+        if(stateLocalisation.coord.long === 0 && stateLocalisation.coord.lat === 0) {
+            console.log('handlechangelocalisation click')
+            handleChangeLocalisation() 
+        } else {
+            console.log('gonna add city')
+            dispatch(addCity({ lat, long, cityName, cityState }))
+            addCityToLocalStorage({ lat, long, cityName, cityState })
+        }
     }
 
     const handleChangeLocalisation = () => {
-
+        console.log('handlechangelocalisation : ', long, lat, cityName)
         batch(() => {
             dispatch(searchingOff())
             dispatch(setLocalisation({ long, lat }))
-            dispatch(setCityName({ cityName }))
         })
 
         dispatch({ type: "ajax/getData"})

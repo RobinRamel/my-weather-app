@@ -6,7 +6,8 @@ const initialState = {
         long: 0,
         lat: 0,
     },
-    cityName: ''
+    cityName: '',
+    cityState: '',
 }
 
 const localisation = createSlice({
@@ -20,8 +21,9 @@ const localisation = createSlice({
         toggleUserDenied: (state) => {
             state.userDenied = !state.userDenied
         },
-        setCityName: (state, action) => {
+        setCityInfos: (state, action) => {
             state.cityName = action.payload.cityName
+            state.cityState = action.payload.cityState
         }
     }
 })
@@ -31,7 +33,7 @@ const { actions, reducer } = localisation
 export const { 
     setLocalisation, 
     toggleUserDenied,
-    setCityName
+    setCityInfos
 } = actions
 
 export default reducer;

@@ -21,6 +21,10 @@ $padding: 3.4rem;
         color: vars.$c-white;
         width: 100%;
 
+        &.onError {
+            border-color: tomato !important;
+        }
+
         &:hover {
             cursor: pointer;
         }

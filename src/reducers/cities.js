@@ -14,7 +14,8 @@ const cities = createSlice({
             state.list.push({
                 lat: action.payload.lat,
                 long: action.payload.long,
-                cityName: action.payload.cityName
+                cityName: action.payload.cityName,
+                cityState: action.payload.cityState
             })
         },
         setCities: (state, action) => {

@@ -1,14 +1,20 @@
 import axios from 'axios'
-import { setCityName } from 'reducers/localisation'
+import { setCityInfos } from 'reducers/localisation'
 import { setData } from 'reducers/weather'
 import { addCity } from 'reducers/cities'
 import { batch } from 'react-redux'
 import { addCityToLocalStorage } from 'selectors/localStorage'
+import { getCityState } from 'selectors/geocoding'
 
 
 const weatherInstance = axios.create({
     baseURL: 'https://api.openweathermap.org/data/2.5'
 })
+
+const geocodingInstance = axios.create({
+    baseURL: 'http://api.openweathermap.org/geo/1.0'
+})
+
 
 /**
  *  Handling axios and requesting the good endpoints depending of the localisation in the Store
@@ -19,24 +25,29 @@ const ajax = (store) => (next) => (action) => {
 
     if(action.type === 'ajax/getData') {
         const state = store.getState()
-        const long = state.localisation.coord.long
-        const lat = state.localisation.coord.lat
+        const { long, lat } = state.localisation.coord
         const cityList = state.cities.list
-        
-        weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_APIKEY}&units=metric&lang=fr`)
-        .then(response => {
-            const data = response.data
-            // filter cities by name and could be empty or fullfilled
-            const isCityAlreadyInList = cityList.find(element => element.cityName === data.name)
+
+        axios.all([
+            weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_APIKEY}&units=metric&lang=fr`),
+            geocodingInstance.get(`reverse?lat=${lat}&lon=${long}&limit=1&appid=${process.env.REACT_APP_APIKEY}`)
+        ])
+        .then(axios.spread((weatherResponse, geocodingResponse) => {
+            console.log("response all : ", weatherResponse, geocodingResponse)
+            const weatherData = weatherResponse.data
+            const geoData = geocodingResponse.data[0]
+
+            const isCityAlreadyInList = cityList.find(element => (element.cityName === weatherData.name))
             const dataToStore = {
-                lat: data.coord.lat,
-                long: data.coord.lon,
-                cityName: data.name
+                lat: weatherData.coord.lat,
+                long: weatherData.coord.lon,
+                cityName: geoData.name,
+                cityState: geoData.state
             }
 
             batch(() => {
-                store.dispatch(setData(data))
-                store.dispatch(setCityName({ cityName: data.name}))
+                store.dispatch(setData(weatherData))
+                store.dispatch(setCityInfos({ cityName: geoData.name, cityState: geoData.state }))
 
                 // If the city don't exist in our list of cities we add it
                 if(!isCityAlreadyInList) {
@@ -44,10 +55,39 @@ const ajax = (store) => (next) => (action) => {
                     store.dispatch(addCity(dataToStore))
                 }
             })
-        })
+        }))
         .catch(error => {
-            console.log('erreur : ', error)
+            console.log("promise all geocoding and weather something went wrong : ", error)
         })
+        
+        // weatherInstance.get(`weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_APIKEY}&units=metric&lang=fr`)
+        // .then(response => {
+        //     const data = response.data
+        //     const cityState = getCityState(lat, long)
+        //     // filter cities by name and could be empty or fullfilled
+        //     const isCityAlreadyInList = cityList.find(element => (element.cityName === data.name))
+        //     const dataToStore = {
+        //         lat: data.coord.lat,
+        //         long: data.coord.lon,
+        //         cityName: data.name,
+        //         cityState
+        //     }
+        //     console.log('iscityinlist : ', cityState, isCityAlreadyInList, data)
+
+        //     batch(() => {
+        //         store.dispatch(setData(data))
+        //         store.dispatch(setCityInfos({ cityName: data.name, cityState: cityState }))
+
+        //         // If the city don't exist in our list of cities we add it
+        //         if(!isCityAlreadyInList) {
+        //             addCityToLocalStorage(dataToStore)
+        //             store.dispatch(addCity(dataToStore))
+        //         }
+        //     })
+        // })
+        // .catch(error => {
+        //     console.log('erreur : ', error)
+        // })
 
     }
 

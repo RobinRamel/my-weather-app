@@ -25,8 +25,6 @@ const localisation = store => next => action => {
 
         navigator.geolocation.getCurrentPosition(success, error)
 
-    } else if (action.type === 'localisation/changeLocalisation') {
-        
     }
 
 
