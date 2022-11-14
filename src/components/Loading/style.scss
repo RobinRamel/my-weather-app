@@ -1,10 +1,15 @@
 @use '../../styles/vars';
+@use '../../styles/mixins' as *;
 
 .loading {
     position: relative;
     flex-grow: 1;
     height: 100%;
     width: 100%;
+
+    @include breakpoint(lt-md) {
+        height: 75vh;
+    }
 
     &__card {
         position: relative;

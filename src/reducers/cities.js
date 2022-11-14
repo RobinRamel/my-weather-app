@@ -18,6 +18,12 @@ const cities = createSlice({
                 cityState: action.payload.cityState
             })
         },
+        removeCity: (state, action) => {
+            state.list = state.list.filter(city => (
+                city.cityName !== action.payload.cityName 
+                && city.cityState !== action.payload.cityState
+            ))
+        },
         setCities: (state, action) => {
            state.list = action.payload 
         },
@@ -35,8 +41,9 @@ const { actions, reducer } = cities
 export const { 
     addCity, 
     setCities, 
+    removeCity, 
     searchingOn, 
-    searchingOff 
+    searchingOff
 
 } = actions
 

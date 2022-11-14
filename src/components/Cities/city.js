@@ -2,9 +2,12 @@ import PropTypes from 'prop-types';
 // import {ReactComponent as Orage} from 'assets/weather-icons/Orage.svg'
 import { useDispatch } from 'react-redux';
 import { setLocalisation } from 'reducers/localisation';
+import { ReactComponent as DeleteBtn } from 'assets/icons/add.svg'
+import { removeCityFromLocalStorage } from 'selectors/localStorage';
 
 
 import './style.scss';
+import { removeCity } from 'reducers/cities';
 
 /**
  * Component to describe a city found in our Store with a cityName and an action to change 
@@ -20,16 +23,23 @@ function City({ cityName, long, lat, cityState }) {
     dispatch({ type: "ajax/getData"})
   }
 
+  const handleDeleteCity = () => {
+    removeCityFromLocalStorage({cityName, cityState})
+    dispatch(removeCity({cityName, cityState}))
+  }
+
   return (
-    <div className="city glass-effect" onClick={handleSwitchLocalisation}>
-        <div className="city__container">
-            <div className="city__container__infos">
+    <div className="city">
+        <div className="city__container glass-effect">
+            <div className="city__container__infos" onClick={handleSwitchLocalisation}>
                 <span className="city-name">{cityName}, <span>{cityState}</span></span>
             </div>
+        </div>
 
-            <div className="city__container__icons">
-                <i className="arrow arrow--right"></i>
-            </div>
+        <div className="city__container__icons">
+            <button className="delete-city" onClick={handleDeleteCity}> 
+              <DeleteBtn />
+            </button>
         </div>
     </div>
   );

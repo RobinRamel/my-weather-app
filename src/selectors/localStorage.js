@@ -39,6 +39,23 @@ export const addCityToLocalStorage = ({lat, long, cityName, cityState}) => {
 
 }
 
+export const removeCityFromLocalStorage = ({ cityName, cityState }) => {
+    const retrieveLocalStorage = JSON.parse( window.localStorage.getItem('myweatherapp-city-list') )
+    const updatedList = retrieveLocalStorage.filter(city => (
+        city.cityName !== cityName
+        && city.cityState !== cityState
+    ))
+
+    console.log("remove city from localSto : ", retrieveLocalStorage, updatedList)
+
+    window.localStorage.setItem(
+        'myweatherapp-city-list',
+        JSON.stringify(
+            updatedList
+        ) 
+    )
+}
+
 // Will only be used by Function above to avoid rewriting the storing 
 const pushDataToLocal = (lat, long, cityName, cityState, retrieveLocalStorage) => {
     window.localStorage.setItem(

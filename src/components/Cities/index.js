@@ -13,11 +13,9 @@ import { useSelector } from 'react-redux';
 function Cities() {
   const storeCityList = useSelector(state => state.cities.list)
   const stateLocalisation = useSelector(state => state.localisation)
+  console.log("city list in cities : ", storeCityList)
   // as we add initial city, we need to exclude it from the render
-  const filteredCityList = storeCityList.filter(city => {
-    console.log("filtering : ", city, stateLocalisation)
-    return city.cityName !== stateLocalisation.cityName || (city.cityName === stateLocalisation.cityName && city.cityState !== stateLocalisation.cityState)
-  })
+  const filteredCityList = storeCityList.filter(city => city.cityName !== stateLocalisation.cityName || (city.cityName === stateLocalisation.cityName && city.cityState !== stateLocalisation.cityState))
   console.log("filtered city list : ", filteredCityList)
 
   return (
