@@ -17,7 +17,6 @@ function DayInfo({
 
   const iconClass = degrees ? "day-info__icon scaled" : "day-info__icon"
 
-  // console.log('dayinfo : ', timestampToHoursMinutes(value))
   return (
     <div className="day-info">
       <div className="day-info__title"> <span> { title } </span> </div>

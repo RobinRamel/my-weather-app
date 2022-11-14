@@ -14,8 +14,6 @@ export const getCityState = async (lat, long) => {
     geocodingInstance.get(`reverse?lat=${lat}&lon=${long}&limit=1&appid=${process.env.REACT_APP_APIKEY}`)
         .then(response => {
             const { state } = response.data[0]
-            console.log("rverse g : ", state ? state : '')
-            console.log("rverse g : ", state)
             return state ? state : ''
         })
         .catch(error => {

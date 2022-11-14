@@ -21,20 +21,16 @@ function CityFound({ cityName, lat, long, cityState }) {
     const stateLocalisation = useSelector(state => state.localisation)
     
     const handleAddCity = () => {
-        console.log('handle add city ' , stateLocalisation)
 
         if(stateLocalisation.coord.long === 0 && stateLocalisation.coord.lat === 0) {
-            console.log('handlechangelocalisation click')
             handleChangeLocalisation() 
         } else {
-            console.log('gonna add city')
             dispatch(addCity({ lat, long, cityName, cityState }))
             addCityToLocalStorage({ lat, long, cityName, cityState })
         }
     }
 
     const handleChangeLocalisation = () => {
-        console.log('handlechangelocalisation : ', long, lat, cityName)
         batch(() => {
             dispatch(searchingOff())
             dispatch(setLocalisation({ long, lat }))

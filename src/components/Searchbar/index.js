@@ -39,7 +39,6 @@ function Searchbar() {
     
     geocoding.get(`direct?q=${inputValue}&limit=10&appid=${process.env.REACT_APP_APIKEY}`)
       .then(response => {
-        console.log('cities found list : ', response.data)
         const data = response.data
         // length 0 on this array we get from API means he founds nothing
         data.length === 0 ? setNoResultFound(true) : setFoundCities(response.data)
