@@ -12,7 +12,7 @@ const weatherInstance = axios.create({
 })
 
 const geocodingInstance = axios.create({
-    baseURL: 'http://api.openweathermap.org/geo/1.0'
+    baseURL: 'https://api.openweathermap.org/geo/1.0'
 })
 
 
