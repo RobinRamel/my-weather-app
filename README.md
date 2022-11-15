@@ -3,8 +3,8 @@
 Bienvenue,
 my weather app est un projet pour mon Portfolio personel, après avoir finis ma formation React, il me fallait un projet pour pratiquer et pouvoir montrer mon niveau actuel en React et son environnement.
 
-Il fut un exercice pour mon affinité aavec le design, puisque je l'ai réalisé par moi même, il n'est donc pas parfait car je suis dev avant tout mais m'a permis de faire de la veille dessus et pratiquer.
-[Lien du figma]()
+Il fut un exercice pour mon affinité aavec le design, puisque je l'ai réalisé par moi même, il est loin du niveau d'un UI designer mais il m'a permis de pratiquer et de faire de la veille sur ce sujet, je suis avant tout développeur mais je suis ouvert à connaitre les métiers que je cotoi 
+[Lien du figma](https://www.figma.com/file/yHczPjJpuQCkmgssyXKHnH/MyWeatherApp?node-id=1%3A11&t=kjwOR8jPCisTFcgT-1)
 
 C'est un application de Météo, connecté a plusieurs API de [OpenWeatherMap](https://openweathermap.org/)
 ainsi qu'à [Leaflet](https://leafletjs.com/) pour la partie display de la map
